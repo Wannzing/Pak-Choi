@@ -5,10 +5,12 @@ public class EnemyHealth : MonoBehaviour
 {
     public float health = 50f;
     public ParticleSystem deathParticle;
+    public SkinnedMeshRenderer SkinnedMeshRenderer;
 
     public AudioSource hurtSfx;
     public float soundCooldown = 1f;
     private float lastPlayTime;
+
 
     public void TakeDamage(float amount)
     {
@@ -34,6 +36,6 @@ public class EnemyHealth : MonoBehaviour
     {
         GetComponent<EnemyAI>().enabled = false;
         deathParticle.Play();
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 0.3f);
     }
 }

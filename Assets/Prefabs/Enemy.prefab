@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 8107149302074949768}
     m_Modifications:
     - target: {fileID: 4685430000801272409, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1277697
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685430000801272409, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1277697
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685430000801272409, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1277697
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685430000801272409, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -51,6 +63,46 @@ PrefabInstance:
     - target: {fileID: 6559545071354745560, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
       propertyPath: m_Name
       value: death_effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: lengthInSec
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: SizeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: ShapeModule.arc.mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: SizeModule.separateAxes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 1.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: SizeModule.y.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: SizeModule.z.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: SizeModule.curve.minMaxState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925706570719683108, guid: aa977194d75b9724d8e7bd2a22063f8d, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -116,6 +168,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6261010347585001846, guid: 71fc202976b324d42a8db98839734db5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6261010347585001846, guid: 71fc202976b324d42a8db98839734db5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 34f929d1b447c774a8275c3272508190, type: 2}
@@ -157,6 +213,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2818090337311211905}
   m_SourcePrefab: {fileID: 100100000, guid: 71fc202976b324d42a8db98839734db5, type: 3}
+--- !u!137 &6779241704657519081 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6261010347585001846, guid: 71fc202976b324d42a8db98839734db5, type: 3}
+  m_PrefabInstance: {fileID: 8577343170822973283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8107149302074949768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 71fc202976b324d42a8db98839734db5, type: 3}
@@ -210,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   deathParticle: {fileID: 5541133409788205836}
+  SkinnedMeshRenderer: {fileID: 6779241704657519081}
   hurtSfx: {fileID: 2818090337311211905}
   soundCooldown: 1
 --- !u!195 &599606545453957590
@@ -222,7 +284,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 10
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

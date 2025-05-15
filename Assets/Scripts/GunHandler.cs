@@ -9,11 +9,16 @@ public class GunHandler : MonoBehaviour
     private bool canShoot = true;
     private GameObject currentWeapon;
 
+    public GameObject smg_ui;
+    public GameObject revolver_ui;
+
     private void Awake()
     {
         revolver.SetActive(false);
         smg.SetActive(true);
         currentWeapon = smg;
+        revolver_ui.SetActive(false);
+        smg_ui.SetActive(true);
     }
 
     private void Update()
@@ -30,6 +35,8 @@ public class GunHandler : MonoBehaviour
             {
                 canShoot = true;
                 isReloading = false;
+                revolver_ui.SetActive(false);
+                smg_ui.SetActive(true);
                 SwitchWeapon(smg);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2) && currentWeapon != revolver)
@@ -37,6 +44,8 @@ public class GunHandler : MonoBehaviour
                 canShoot = true;
                 isReloading = false;
                 SwitchWeapon(revolver);
+                revolver_ui.SetActive(true);
+                smg_ui.SetActive(false);
             }
         }
     }
@@ -46,19 +55,11 @@ public class GunHandler : MonoBehaviour
         {
             currentWeapon.SetActive(false);
 
-            // Optional: Save the state explicitly
-            var stateSaver = currentWeapon.GetComponent<WeaponStateSaver>();
-            if (stateSaver != null)
-                stateSaver.SaveState();
+            
         }
 
         // Enable new weapon
         newWeapon.SetActive(true);
-
-        // Restore its original transform values
-        var newStateSaver = newWeapon.GetComponent<WeaponStateSaver>();
-        if (newStateSaver != null)
-            newStateSaver.RestoreState();
 
         currentWeapon = newWeapon;
     }
