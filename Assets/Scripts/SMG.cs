@@ -30,8 +30,10 @@ public class SMG : MonoBehaviour
     public TextMeshProUGUI ammoText;
     private Animator anim;
 
-    //AUDIO
+    // For mobile shooting xd
+    private bool isFiring = false;
 
+    //AUDIO
     public AudioSource shootSfx;
     public AudioSource reloadSfx;
     public AudioSource hitSfx;
@@ -61,21 +63,34 @@ public class SMG : MonoBehaviour
         }
 
         // Shoot when Fire1 button is pressed and there is ammo left
-        if (Input.GetButton("Fire1") && currentAmmo > 0 && canShoot)
+        if (isFiring && currentAmmo > 0 && canShoot)
         {
             StartCoroutine(ShootWithDelay());
-        }
-
-        // Reload when R key is pressed and not already reloading
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < maxAmmo)
-        {
-            StartCoroutine(Reload());
         }
 
         // Optional: Update the ammo text UI if it exists
         if (ammoText != null)
         {
             UpdateAmmoText();
+        }
+    }
+
+    public void StartFiring()
+    {
+        isFiring = true;
+    }
+
+    public void StopFiring()
+    {
+        isFiring = false;
+    }
+
+    public void mobileReload()
+    {
+        // Reload when R key is pressed and not already reloading
+        if (!isReloading && currentAmmo < maxAmmo)
+        {
+            StartCoroutine(Reload());
         }
     }
 

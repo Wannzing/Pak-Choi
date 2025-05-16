@@ -1,49 +1,43 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-
-
     public GameObject Player;
     public int maxHealth = 100;
-    public  int currentHealth;
+    public int currentHealth;
 
     public TextMeshProUGUI healthText;
-    //[SerializeField] ParticleSystem deathParticle;
+    public Image hurtFlashImage; // UI image for the red flash
+
+    public float flashDuration = 0.2f;
 
     void Start()
     {
         currentHealth = maxHealth;
+        hurtFlashImage.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("HURT");
-            //deathParticle.Play();
-            currentHealth--;
+            TakeDamage(1);
         }
+
         Death();
         UpdateHealthUI();
     }
 
-
     void Death()
     {
-
-
         if (currentHealth <= 0)
         {
-            //deathParticle.Play();
             Debug.Log("Player Died");
             Destroy(gameObject, 0.5f);
-        }
-        else
-        {
-            return;
         }
     }
 
@@ -61,10 +55,29 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // Reduce the player's health by the damage amount
         currentHealth -= damage;
-
-        // Clamp health to prevent it from going below zero
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        ShowHurtEffect();
+    }
+
+    private void ShowHurtEffect()
+    {
+        if (hurtFlashImage != null)
+        {
+            StopAllCoroutines();
+            StartCoroutine(FlashHurt());
+        }
+    }
+
+    private IEnumerator FlashHurt()
+    {
+        // Enable the image GameObject
+        hurtFlashImage.gameObject.SetActive(true);
+
+        // Wait for a short time
+        yield return new WaitForSeconds(flashDuration);
+
+        // Disable the image GameObject
+        hurtFlashImage.gameObject.SetActive(false);
     }
 }
