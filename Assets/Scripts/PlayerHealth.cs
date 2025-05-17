@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject loseScreen;
     public int maxHealth = 100;
     public int currentHealth;
+    public AudioSource hurtSfx;
 
     public TextMeshProUGUI healthText;
     public Image hurtFlashImage; // UI image for the red flash
@@ -37,7 +39,8 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Player Died");
-            Destroy(gameObject, 0.5f);
+            Time.timeScale = 0f;
+            loseScreen.SetActive(true);
         }
     }
 
@@ -58,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         ShowHurtEffect();
+        hurtSfx.Play();
     }
 
     private void ShowHurtEffect()
@@ -71,13 +75,10 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator FlashHurt()
     {
-        // Enable the image GameObject
         hurtFlashImage.gameObject.SetActive(true);
 
-        // Wait for a short time
         yield return new WaitForSeconds(flashDuration);
 
-        // Disable the image GameObject
         hurtFlashImage.gameObject.SetActive(false);
     }
 }

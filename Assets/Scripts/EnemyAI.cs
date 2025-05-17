@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
+
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool canMove = true;
